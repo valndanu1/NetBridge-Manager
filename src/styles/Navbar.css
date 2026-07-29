@@ -1,0 +1,206 @@
+.navbar {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 260px;
+
+  right: 0;
+
+  height: 70px;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+  z-index: 1000;
+
+}
+
+
+
+.navbar h2 {
+
+  color: #0d47a1;
+
+  font-size: 22px;
+
+}
+
+
+
+.navbar-right {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+}
+
+
+
+.search-box {
+
+  width: 250px;
+
+  padding: 10px 15px;
+
+  border-radius: 20px;
+
+  border: 1px solid #ddd;
+
+  outline: none;
+
+}
+
+
+
+.search-box:focus {
+
+  border-color: #0d47a1;
+
+}
+
+
+
+.notify-btn {
+
+  border: none;
+
+  background: #e3f2fd;
+
+  padding: 10px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+}
+
+
+
+.user {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+
+.user span {
+
+  font-size: 22px;
+
+}
+
+
+
+.user p {
+
+  margin: 0;
+
+  font-weight: bold;
+
+}
+
+
+
+@media(max-width:700px){
+
+  .navbar{
+
+    left:80px;
+
+    padding:0 15px;
+
+  }
+
+
+  .navbar h2{
+
+    display:none;
+
+  }
+
+
+  .search-box{
+
+    width:120px;
+
+  }
+
+}
+.theme-btn {
+
+  background:#8B5E3C;
+
+  color:white;
+
+  border:none;
+
+  padding:10px 15px;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+}
+
+
+/* Brown Theme */
+
+.brown-theme {
+
+  background:#f5eee6;
+
+  color:#4b2e1f;
+
+}
+
+
+
+.brown-theme .navbar {
+
+  background:#fff8f0;
+
+}
+
+
+
+.brown-theme .dashboard-card,
+.brown-theme .table-card,
+.brown-theme .customer-form,
+.brown-theme .card {
+
+  background:#fff3e6;
+
+}
+
+
+
+.brown-theme h1,
+.brown-theme h2,
+.brown-theme h3 {
+
+  color:#6b3e26;
+
+}
