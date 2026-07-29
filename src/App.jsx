@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-
+import InvoicesPage from "./pages/InvoicesPage";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -75,7 +75,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-
+<Route
+  path="/invoices"
+  element={
+    <ProtectedRoute>
+      <InvoicesPage />
+    </ProtectedRoute>
+  }
+/>
           <Route
             path="/network"
             element={

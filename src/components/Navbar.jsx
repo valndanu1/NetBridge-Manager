@@ -1,100 +1,41 @@
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate();
 
-  const [brownMode, setBrownMode] = useState(false);
-
-
-  useEffect(() => {
-
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "brown") {
-      document.body.classList.add("brown-theme");
-      setBrownMode(true);
-    }
-
-  }, []);
-
-
-
-  function toggleTheme() {
-
-    if (brownMode) {
-
-      document.body.classList.remove("brown-theme");
-
-      localStorage.setItem(
-        "theme",
-        "white"
-      );
-
-      setBrownMode(false);
-
-    } else {
-
-      document.body.classList.add("brown-theme");
-
-      localStorage.setItem(
-        "theme",
-        "brown"
-      );
-
-      setBrownMode(true);
-
-    }
-
+  function handleLogout() {
+    sessionStorage.removeItem("isLoggedIn");
+    navigate("/login");
   }
 
-
-
   return (
-
     <header className="navbar">
-
-      <h2>
-        NetBridge ISP Manager
-      </h2>
-
+      <h2>NetBridge ISP Manager</h2>
 
       <div className="navbar-right">
+        <input
+          type="text"
+          placeholder="Search customers..."
+          className="search-box"
+        />
 
-
-        <button
-          className="theme-btn"
-          onClick={toggleTheme}
-        >
-          {brownMode ? "🤎 Brown" : "⚪ White"}
-        </button>
-
-
-
-        <button className="notify-btn">
-          🔔
-        </button>
-
-
+        <button className="notify-btn">🔔</button>
 
         <div className="user">
-
-          <span>
-            👤
-          </span>
-
-          <p>
-            Admin
-          </p>
-
+          <span>👤</span>
+          <p>Admin</p>
         </div>
 
-
+        <button
+          onClick={handleLogout}
+          className="logout-btn"
+        >
+          Logout
+        </button>
       </div>
-
     </header>
-
   );
 }
-
 
 export default Navbar;
