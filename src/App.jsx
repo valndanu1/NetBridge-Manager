@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import LandingPage from "./pages/LandingPage";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import CustomersPage from "./pages/CustomersPage";
 import PackagesPage from "./pages/PackagesPage";
@@ -12,83 +14,98 @@ import NetworkPage from "./pages/NetworkPage";
 import ReportsPage from "./pages/ReportsPage";
 import SettingsPage from "./pages/SettingsPage";
 
-
 function App() {
+  const location = useLocation();
+
+  const hideLayout =
+    location.pathname === "/" || location.pathname === "/login";
 
   return (
     <>
-
-      <Sidebar />
-
-      <Navbar />
-
+      {!hideLayout && <Sidebar />}
+      {!hideLayout && <Navbar />}
 
       <main
         style={{
-          marginLeft: "260px",
-          marginTop: "90px",
-          padding: "25px",
-          background: "#f4f7fc",
+          marginLeft: hideLayout ? "0" : "260px",
+          marginTop: hideLayout ? "0" : "90px",
+          padding: hideLayout ? "0" : "25px",
+          background: hideLayout ? "#ffffff" : "#f4f7fc",
           minHeight: "100vh",
         }}
       >
-
         <Routes>
+          {/* Public Pages */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
-          <Route
-            path="/"
-            element={<LandingPage />}
-          />
-
-
+          {/* Protected Pages */}
           <Route
             path="/dashboard"
-            element={<DashboardPage />}
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/customers"
-            element={<CustomersPage />}
+            element={
+              <ProtectedRoute>
+                <CustomersPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/packages"
-            element={<PackagesPage />}
+            element={
+              <ProtectedRoute>
+                <PackagesPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/payments"
-            element={<PaymentsPage />}
+            element={
+              <ProtectedRoute>
+                <PaymentsPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/network"
-            element={<NetworkPage />}
+            element={
+              <ProtectedRoute>
+                <NetworkPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/reports"
-            element={<ReportsPage />}
+            element={
+              <ProtectedRoute>
+                <ReportsPage />
+              </ProtectedRoute>
+            }
           />
-
 
           <Route
             path="/settings"
-            element={<SettingsPage />}
+            element={
+              <ProtectedRoute>
+                <SettingsPage />
+              </ProtectedRoute>
+            }
           />
-
         </Routes>
-
       </main>
-
     </>
   );
 }
-
 
 export default App;
